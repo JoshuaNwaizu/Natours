@@ -1,5 +1,10 @@
 const express = require('express');
-const { signup, login } = require('../controllers/authController');
+const {
+  signup,
+  login,
+  forgotPassword,
+  resetPassword,
+} = require('../controllers/authController');
 
 const userRouter = express.Router();
 const {
@@ -12,6 +17,9 @@ const {
 // userRouter.use(protect);
 userRouter.post('/signup', signup);
 userRouter.post('/login', login);
+
+userRouter.post('/forgotPassword', forgotPassword);
+userRouter.patch('/resetPassword/:token', resetPassword);
 // ROUTINGS FOR USERS
 userRouter.route('/').get(getAllUsers).post(createUser);
 userRouter.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
